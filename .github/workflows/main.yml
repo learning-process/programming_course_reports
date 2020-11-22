@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/download-artifact@v2
       with:
         name: ubuntu-artifacts
         path: build/bin/
@@ -32,9 +33,6 @@ jobs:
     runs-on: macOS-latest
     steps:
     - uses: actions/checkout@v1
-      with:
-        name: ubuntu-artifacts
-        path: build/bin/
     - name: Setup environment
       run: |
         brew update-reset
@@ -50,9 +48,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-      with:
-        name: ubuntu-artifacts
-        path: build/bin/
     - name: Build
       run: |
         mkdir build
