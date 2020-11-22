@@ -7,10 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/download-artifact@v2
-      with:
-        name: ubuntu-artifacts
-        path: build/bin/
     - name: Setup environment
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
@@ -29,6 +25,10 @@ jobs:
       env:
         CC: gcc-9
         CXX: g++-9
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ubuntu-artifacts
+        path: build/bin/
   macos-build:
     runs-on: macOS-latest
     steps:
