@@ -14,9 +14,9 @@ if ( USE_LATEX )
     )
 
     add_custom_command(
-            TARGET ${ProjectId}_pdf
-            POST_BUILD
-            COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/*.pdf ${LATEX_OUTPUT_PATH}
+        TARGET ${ProjectId}_pdf
+        POST_BUILD
+        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/*.pdf ${LATEX_OUTPUT_PATH}
     )
 else( USE_LATEX )
     message( STATUS "-- ${ProjectId} - NOT BUILD!"  )
