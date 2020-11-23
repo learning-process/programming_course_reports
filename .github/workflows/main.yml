@@ -35,6 +35,7 @@ jobs:
       run: |
         brew update-reset
         brew unlink python@3.8
+        brew install mactex
     - name: Build
       run: |
         mkdir build
@@ -42,6 +43,10 @@ jobs:
         cmake -D USE_LATEX=ON ..
         cmake --build . --config -j4
         cd ..
+    - uses: actions/upload-artifact@v2
+      with:
+        name: macos-artifacts
+        path: build/bin/
   windows-build:
     runs-on: windows-latest
     steps:
@@ -56,10 +61,10 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -G "Visual Studio 16 2019" -D USE_LATEX=ON ..
+        cmake -D USE_LATEX=ON ..
         cmake --build .
         cd ..
-      shell: cmd
+      shell: powershell
     - uses: actions/upload-artifact@v2
       with:
         name: windows-artifacts
