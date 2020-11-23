@@ -11,18 +11,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v1
       - name: Install pdflatex
-        uses: BSFishy/pip-action@v2
+        uses: BSFishy/pip-action@v1
         with:
-          packages: pdflatex
+          packages: virtualenv
       - name: Build
         run: |
+          python3 -m venv report_env
+          source env/bin/activate
+          pip -q install pdflatex
           mkdir build
           cd build
           cmake -D USE_LATEX=ON ..
           cmake --build . --config -j4
           cd ..
+          deactivate
       - uses: actions/upload-artifact@v2
         with:
           name: artifacts

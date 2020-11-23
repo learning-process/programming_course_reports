@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.15 )
 
-message( STATUS "Parallel Programming Course" )
+message( STATUS "Programming Course Reports" )
 
 include(${CMAKE_SOURCE_DIR}/cmake/Configure.cmake)
 
