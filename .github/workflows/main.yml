@@ -35,7 +35,7 @@ jobs:
       run: |
         brew update-reset
         brew unlink python@3.8
-        brew install mactex
+        brew install texlive
     - name: Build
       run: |
         mkdir build
@@ -53,10 +53,10 @@ jobs:
     - uses: actions/checkout@v1
     - name: Download and install dependencies
       run: |
-        powershell -file "scripts\windows_install_miktex.ps1"
+        scripts\windows_install_miktex.ps1
         refreshenv
         pdflatex -version
-      shell: cmd
+      shell: powershell
     - name: Build
       run: |
         mkdir build
