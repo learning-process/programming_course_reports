@@ -10,8 +10,6 @@ jobs:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
     steps:
       - uses: actions/checkout@v1
-      - name: Set up Python
-        uses: actions/setup-python@v1
       - name: Install tex components
         run:   |
           if [ "$RUNNER_OS" == "Linux" ]; then
@@ -25,6 +23,8 @@ jobs:
               echo "$RUNNER_OS not supported"
               exit 1
           fi
+      - name: Set up Python
+        uses: actions/setup-python@v1
       - name: Install pdflatex
         uses: BSFishy/pip-action@v1
         with:
