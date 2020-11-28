@@ -13,8 +13,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install texlive*
         sudo apt-get install python3-pip
-        sudo pip install --upgrade pip
-        sudo pip install pdflatex
+        sudo python3 -m pip install --upgrade pip
+        sudo python3 -m pip install pdflatex
     - name: Build
       run: |
         mkdir build
