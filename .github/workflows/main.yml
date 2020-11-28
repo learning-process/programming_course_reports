@@ -25,5 +25,28 @@ jobs:
       shell: bash
     - uses: actions/upload-artifact@v2
       with:
-        name: artifacts
+        name: ubuntu-artifacts
+        path: build/bin/
+  macos-build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup environment
+      run: |
+        brew update-reset
+        brew unlink python@3.8
+        brew install mactex tex-live-utility
+        sudo pip install --upgrade pip
+        sudo pip install pdflatex
+    - name: Build
+      run: |
+        mkdir build
+        cd build
+        cmake -D USE_LATEX=ON  ..
+        cmake --build . 
+        cd ..
+      shell: bash
+    - uses: actions/upload-artifact@v2
+      with:
+        name: macos-artifacts
         path: build/bin/
