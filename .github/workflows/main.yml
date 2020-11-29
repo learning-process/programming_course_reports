@@ -37,14 +37,11 @@ jobs:
     - name: Download dependencies
       run: |
         Invoke-WebRequest https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x64/miktexsetup-4.0-x64.zip -OutFile miktexsetup.zip
-    - name: action-zip
-      uses: montudor/action-zip@v0.1.1
-      with:
-        args: unzip -qq miktexsetup.zip -d scripts
+        Expand-Archive -Force miktexsetup.zip .
     - name: Setup environment
       run: |
-        scripts/miktexsetup.exe --package-set=basic download
-        scripts/miktexsetup.exe install
+        miktexsetup.exe --package-set=basic download
+        miktexsetup.exe install
       shell: cmd
     - name: Setup python
       uses: actions/setup-python@v1
