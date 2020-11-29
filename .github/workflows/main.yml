@@ -41,7 +41,7 @@ jobs:
         cd ..
     - name: Setup environment
       run: |
-        setup_latex.bat
+        scripts/setup_latex.bat
       shell: cmd
     - name: Setup python
       uses: actions/setup-python@v1
