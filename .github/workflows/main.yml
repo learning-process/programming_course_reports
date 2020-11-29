@@ -38,6 +38,12 @@ jobs:
         brew install mactex tex-live-utility
         sudo pip install --upgrade pip
         sudo pip install pdflatex
+    - uses: actions/setup-python@v1
+    - name: Install pdflatex
+      uses: BSFishy/pip-action@v1
+      with:
+        packages: virtualenv
+        packages: pdflatex
     - name: Build
       run: |
         mkdir build
