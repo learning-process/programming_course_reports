@@ -30,3 +30,34 @@ jobs:
       with:
         name: ubuntu-artifacts
         path: build/bin/
+  windows-build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Download dependencies
+      run: |
+        cd scripts
+        Invoke-WebRequest https://www.tug.org/texlive/files/tl64.bat -OutFile setup_latex.bat
+        cd ..
+    - name: Setup environment
+      run: |
+        setup_latex.bat
+      shell: cmd
+    - name: Setup python
+      uses: actions/setup-python@v1
+    - name: Install pdflatex
+      uses: BSFishy/pip-action@v1
+      with:
+        packages: pdflatex
+    - name: Build
+      run: |
+        mkdir build
+        cd build
+        cmake -D USE_LATEX=ON  ..
+        cmake --build . 
+        cd ..
+      shell: cmd
+    - uses: actions/upload-artifact@v2
+      with:
+        name: windows-artifacts
+        path: build/bin/
