@@ -36,7 +36,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup environment
       run: |
-        powershell -file "scripts\miktex_install.ps1"
+        powershell -noexit "& ""scripts\miktex_install.ps1""" 
         refreshenv
         pdflatex -version
       shell: cmd
