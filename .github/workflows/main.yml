@@ -42,7 +42,7 @@ jobs:
       run: |
         mkdir miktex_setup
         miktexsetup.exe --verbose --local-package-repository=miktex_setup --package-set=complete download
-        miktexsetup.exe install
+        miktexsetup.exe --local-package-repository=miktex_setup install
       shell: cmd
     - name: Setup python
       uses: actions/setup-python@v1
