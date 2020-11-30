@@ -34,10 +34,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Setup environment
+    - name: Setup chocolatey
+      uses: crazy-max/ghaction-chocolatey@v1
+      with:
+        args: install miktex.portable
+    - name: Refresh environment 
       run: |
-        Invoke-WebRequest http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe -OutFile texlive.exe
-        texlive.exe -unattend
+        refreshenv
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
