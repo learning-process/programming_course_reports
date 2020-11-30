@@ -7,8 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Github Action for LaTeX
-      uses: xu-cheng/latex-action@v2
+    - name: Setup environment
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo apt-get update
+        sudo apt-get install texlive*
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
@@ -31,11 +34,12 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
+    - name: Download dependencies
+      run: |
+        Invoke-WebRequest http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe -OutFile texlive.exe
     - name: Setup environment
       run: |
-        & "scripts\miktex_install.ps1"
-        refreshenv
-        pdflatex -version
+        texlive.exe -unattend
       shell: powershell
     - name: Setup python
       uses: actions/setup-python@v1
