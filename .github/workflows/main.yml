@@ -7,11 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Setup environment
-      run: |
-        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update
-        sudo apt-get install texlive*
+    - name: Github Action for LaTeX
+      uses: xu-cheng/latex-action@v2
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
