@@ -34,13 +34,10 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Download dependencies
-      run: |
-        Invoke-WebRequest http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe -OutFile texlive.exe
     - name: Setup environment
       run: |
+        Invoke-WebRequest http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe -OutFile texlive.exe
         texlive.exe -unattend
-      shell: powershell
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
