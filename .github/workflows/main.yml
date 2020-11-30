@@ -34,10 +34,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Setup environment
-      run: |
-        "scripts\miktex_install.ps1"
-      shell: powershell
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
@@ -46,12 +42,13 @@ jobs:
         packages: pdflatex
     - name: Build
       run: |
+        "scripts\miktex_install.ps1"
         mkdir build
         cd build
         cmake -D USE_LATEX=ON  ..
         cmake --build . 
         cd ..
-      shell: cmd
+      shell: powershell
     - uses: actions/upload-artifact@v2
       with:
         name: windows-artifacts
