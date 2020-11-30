@@ -40,7 +40,8 @@ jobs:
         Expand-Archive -Force miktexsetup.zip .
     - name: Setup environment
       run: |
-        miktexsetup.exe --package-set=basic download
+        mkdir miktex_setup
+        miktexsetup.exe --verbose --local-package-repository=miktex_setup --package-set=complete download
         miktexsetup.exe install
       shell: cmd
     - name: Setup python
