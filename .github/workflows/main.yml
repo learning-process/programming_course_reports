@@ -37,7 +37,7 @@ jobs:
     - name: Setup chocolatey
       uses: crazy-max/ghaction-chocolatey@v1
       with:
-        args: install miktex.portable
+        args: install miktex
     - name: Refresh environment 
       run: |
         refreshenv
