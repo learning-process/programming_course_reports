@@ -34,10 +34,12 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Setup chocolatey
-      uses: crazy-max/ghaction-chocolatey@v1
-      with:
-        args: install miktex
+    - name: Setup environment
+      run: |
+        "scripts\miktex_install.ps1"
+        refreshenv
+        pdflatex -version
+      shell: powershell
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
@@ -46,7 +48,6 @@ jobs:
         packages: pdflatex
     - name: Build
       run: |
-        refreshenv
         mkdir build
         cd build
         cmake -D USE_LATEX=ON  ..
