@@ -30,16 +30,15 @@ jobs:
       with:
         name: ubuntu-artifacts
         path: build/bin/
-  windows-build:
-    runs-on: windows-latest
+  macos-build:
+    runs-on: macOS-latest
     steps:
     - uses: actions/checkout@v1
     - name: Setup environment
       run: |
-        & "scripts\miktex_install.ps1"
-        refreshenv
-        pdflatex -version
-      shell: powershell
+        brew update-reset
+        brew unlink python@3.8
+        brew install mactex-no-gui
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
@@ -53,8 +52,8 @@ jobs:
         cmake -D USE_LATEX=ON  ..
         cmake --build . 
         cd ..
-      shell: powershell
+      shell: bash
     - uses: actions/upload-artifact@v2
       with:
-        name: windows-artifacts
+        name: macos-artifacts
         path: build/bin/
