@@ -38,9 +38,6 @@ jobs:
       uses: crazy-max/ghaction-chocolatey@v1
       with:
         args: install miktex
-    - name: Refresh environment 
-      run: |
-        refreshenv
     - name: Setup python
       uses: actions/setup-python@v1
     - name: Install pdflatex
@@ -49,6 +46,7 @@ jobs:
         packages: pdflatex
     - name: Build
       run: |
+        refreshenv
         mkdir build
         cd build
         cmake -D USE_LATEX=ON  ..
