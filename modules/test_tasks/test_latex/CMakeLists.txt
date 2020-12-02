@@ -6,18 +6,17 @@ if ( USE_LATEX )
     message( STATUS "-- " ${ProjectId} )
     file(GLOB_RECURSE report_files "*.tex")
 
-    add_custom_target(
-        "${ProjectId}_pdf" ALL
-        COMMAND "${Python3_EXECUTABLE}"
-        ${CMAKE_SOURCE_DIR}/scripts/convert_tex_to_pdf.py
-        ${report_files}
-    )
+    get_filename_component(report_names ${report_files} NAME)
+    add_latex_document(${report_names})
 
     add_custom_command(
-        TARGET ${ProjectId}_pdf
-        POST_BUILD
-        COMMAND mv ${CMAKE_CURRENT_BINARY_DIR}/*.pdf ${LATEX_OUTPUT_PATH}
+            TARGET ${ProjectId}_pdf
+            POST_BUILD
+            COMMAND rm ${LATEX_OUTPUT_PATH}/*.aux
+            COMMAND rm ${LATEX_OUTPUT_PATH}/*.log
+            COMMAND rm ${LATEX_OUTPUT_PATH}/*.tex
     )
+
 else( USE_LATEX )
     message( STATUS "-- ${ProjectId} - NOT BUILD!"  )
 endif( USE_LATEX )

@@ -12,12 +12,8 @@ jobs:
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt-get update
         sudo apt-get install texlive*
-    - name: Setup python
-      uses: actions/setup-python@v1
-    - name: Install pdflatex
-      uses: BSFishy/pip-action@v1
-      with:
-        packages: pdflatex
+    - name: Update submodules
+      run: git submodule update --init --recursive
     - name: Build
       run: |
         mkdir build
@@ -29,31 +25,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: ubuntu-artifacts
-        path: build/bin/
-  macos-build:
-    runs-on: macOS-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Setup environment
-      run: |
-        brew update-reset
-        brew unlink python@3.8
-        brew install mactex-no-gui
-    - name: Setup python
-      uses: actions/setup-python@v1
-    - name: Install pdflatex
-      uses: BSFishy/pip-action@v1
-      with:
-        packages: pdflatex
-    - name: Build
-      run: |
-        mkdir build
-        cd build
-        cmake -D USE_LATEX=ON  ..
-        cmake --build . 
-        cd ..
-      shell: bash
-    - uses: actions/upload-artifact@v2
-      with:
-        name: macos-artifacts
         path: build/bin/
