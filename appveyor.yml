@@ -15,3 +15,7 @@ build_script:
   - cmd: cmake -D USE_LATEX=ON ..
   - cmd: cmake --build .
   - cmd: cd ..
+
+artifacts:
+  - path: build\bin
+    name: windows-artifacts
