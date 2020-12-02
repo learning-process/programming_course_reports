@@ -20,7 +20,9 @@ git submodule update --init --recursive
 ### `LaTeX`
   * **Windows**:
 
-  Run powershell script `scripts/appveyor_install_miktex-latest-minimal.ps1` for install LaTeX and build project.
+  ```
+  powershell -file "scripts\miktex_install.ps1"  
+  ```
 
   * **Linux**:
   ```
