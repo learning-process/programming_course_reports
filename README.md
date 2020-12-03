@@ -83,7 +83,3 @@ Navigate to a source code folder.
   ```
 
 *Failing to follow the rules makes the project build red.*
-
-And finally, 
-
-**All information of the course is in WIKI!!!**
