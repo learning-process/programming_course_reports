@@ -8,6 +8,7 @@ if ( USE_LATEX )
 
     get_filename_component(report_names ${report_files} NAME)
     add_latex_document(${report_names})
+    add_custom_target(test_latex_pdf DEPENDS ${ProjectId}_pdf)
 
     add_custom_command(
             TARGET ${ProjectId}_pdf
