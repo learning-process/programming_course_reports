@@ -21,9 +21,12 @@ git submodule update --init --recursive
 ### `LaTeX`
   * **Windows**:
 
-  ```
-  powershell -file "scripts\miktex_install.ps1"  
-  ```
+  1. Install [Chocolatey](https://chocolatey.org/install)
+  2. Install miktex
+      ```bash
+      choco install miktex
+      ```
+  3. Add miktex installation path to your system PATH environment variable. Default installation location: "C:\Program Files\MiKTeX\miktex\bin\x64"
 
   * **Linux**:
   ```
