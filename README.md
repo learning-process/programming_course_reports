@@ -21,11 +21,23 @@ git submodule update --init --recursive
   * **Windows**:
 
   1. Install [Chocolatey](https://chocolatey.org/install)
-  2. Install miktex
+  2. Install TeX distribution:
+
+     Choose one of two (any) TeX distribution to install
+
+      - miktex
+        ```bash
+        choco install miktex
+        ```
+        Add miktex installation path to your system PATH environment variable. Default installation location: "C:\Program Files\MiKTeX\miktex\bin\x64"
+      - texlive (takes more disk space and time to setup)
+        ```bash
+        choco install texive --params="'/scheme:full'" --execution-timeout=10000
+        ```
+  3. Refresh your environment (reopen the console or type `refreshenv`) and check if TeX distribution is set up. E.g. use this command (it should be available and display the current version of pdflatex tool):
       ```bash
-      choco install miktex
+      pdflatex --version
       ```
-  3. Add miktex installation path to your system PATH environment variable. Default installation location: "C:\Program Files\MiKTeX\miktex\bin\x64"
 
   * **Linux**:
   ```
