@@ -1,4 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/5hies4gp7lyrxs8n/branch/master?svg=true)](https://ci.appveyor.com/project/allnes/programming-course-reports/branch/master)
 [![Build application](https://github.com/learning-process/programming_course_reports/actions/workflows/main.yml/badge.svg)](https://github.com/learning-process/programming_course_reports/actions/workflows/main.yml)
 
 # Programming Course Reports
