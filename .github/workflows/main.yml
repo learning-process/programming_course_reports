@@ -32,12 +32,9 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: true
-    - name: Setup environment
-      run: |
-        choco install texlive --params="'/scheme:full'" --execution-timeout=10000
     - name: Build
       run: |
-        Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+        powershell -file "scripts\miktex_install.ps1"
         refreshenv
         mkdir build
         cd build
