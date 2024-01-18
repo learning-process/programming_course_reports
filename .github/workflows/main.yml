@@ -36,7 +36,7 @@ jobs:
         choco install wget unzip
         wget https://miktex.org/download/win/miktexsetup-x64.zip
         unzip miktexsetup-x64.zip
-        dir .
+        ls -l
         "miktexsetup_standalone.exe" download
         "miktexsetup_standalone.exe" install
     - name: Build
