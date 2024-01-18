@@ -39,6 +39,7 @@ jobs:
       shell: pwsh
     - name: Build
       run: |
+        Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
         refreshenv
         mkdir build
         cmake -G Ninja -S . -B build -D USE_LATEX=ON
