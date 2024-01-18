@@ -33,11 +33,12 @@ jobs:
         submodules: true
     - name: Setup environment
       run: |
-        powershell Invoke-WebRequest -Uri https://miktex.org/download/win/miktexsetup-x64.zip -OutFile miktex.zip
-        powershell Expand-Archive miktex.zip .
+        Invoke-WebRequest -Uri https://miktex.org/download/win/miktexsetup-x64.zip -OutFile miktex.zip
+        Expand-Archive miktex.zip .
         mkdir miktexrepo
-        miktexsetup_standalone --quiet --local-package-repository=./miktexrepo --package-set=complete download
-        miktexsetup_standalone --quiet --local-package-repository=miktexrepo --package-set=complete install
+        miktexsetup_standalone.exe --quiet --local-package-repository=./miktexrepo --package-set=complete download
+        miktexsetup_standalone.exe --quiet --local-package-repository=miktexrepo --package-set=complete install
+      shell: pwsh
     - name: Build
       run: |
         Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
