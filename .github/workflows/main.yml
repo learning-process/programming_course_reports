@@ -36,12 +36,14 @@ jobs:
     - name: Setup environment
       run: |
         choco install miktex --no-progress
+        echo "C:\Program Files\MiKTeX\miktex\bin\x64" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
     - name: Build
       run: |
         refreshenv
         mkdir build
         cmake -G Ninja -S . -B build -D USE_LATEX=ON
         cmake --build build
+      shell: bash
     - uses: actions/upload-artifact@v4
       with:
         name: windows-artifacts
