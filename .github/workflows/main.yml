@@ -39,7 +39,6 @@ jobs:
         dir .
         "miktexsetup_standalone.exe" download
         "miktexsetup_standalone.exe" install
-      shell: pwsh
     - name: Build
       run: |
         Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
