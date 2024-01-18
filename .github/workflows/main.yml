@@ -14,10 +14,8 @@ jobs:
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt-get update
         sudo apt-get install ninja-build
-    - name: Github Action with TeXLive
-      uses: xu-cheng/texlive-action@v2
-      with:
-        scheme: full
+        sudo apt-get install texlive*
+    - name: Build
       run: |
         mkdir build
         cmake -G Ninja -S . -B build -D USE_LATEX=ON
