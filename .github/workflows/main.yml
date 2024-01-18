@@ -36,8 +36,8 @@ jobs:
         choco install wget
         wget https://miktex.org/download/win/miktexsetup-x64.zip
         unzip miktexsetup-x64.zip
-        miktexsetup_standalone.exe --verbose --local-package-repository=C:\temp\miktex --package-set=complete download
-        miktexsetup_standalone.exe --verbose --local-package-repository=C:\temp\miktex --package-set=complete install
+        miktexsetup_standalone.exe --package-set=complete download
+        miktexsetup_standalone.exe --package-set=complete install
       shell: pwsh
     - name: Build
       run: |
