@@ -13,14 +13,13 @@ jobs:
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt-get update
+        sudo apt-get install ninja-build
         sudo apt-get install texlive*
     - name: Build
       run: |
         mkdir build
-        cd build
-        cmake -D USE_LATEX=ON  ..
-        cmake --build . 
-        cd ..
+        cmake -G Ninja -S . -B build -D USE_LATEX=ON
+        cmake --build build
       shell: bash
     - uses: actions/upload-artifact@v4
       with:
@@ -34,17 +33,37 @@ jobs:
         submodules: true
     - name: Setup environment
       run: |
-        choco install texlive --params="'/scheme:full'" --execution-timeout=10000
+        scripts\miktex_install.ps1
+      shell: pwsh
     - name: Build
       run: |
         Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
         refreshenv
         mkdir build
-        cd build
-        cmake -D USE_LATEX=ON  ..
-        cmake --build .
-        cd ..
+        cmake -S . -B build -D USE_LATEX=ON
+        cmake --build build
+      shell: pwsh
     - uses: actions/upload-artifact@v4
       with:
         name: windows-artifacts
+        path: build/bin/
+  macos-build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+    - name: Setup environment
+      run: |
+        brew install --cask mactex
+        brew install ninja
+    - name: Build
+      run: |
+        eval "$(/usr/libexec/path_helper)"
+        mkdir build
+        cmake -G Ninja -S . -B build -D USE_LATEX=ON
+        cmake --build build
+    - uses: actions/upload-artifact@v4
+      with:
+        name: macos-artifacts
         path: build/bin/

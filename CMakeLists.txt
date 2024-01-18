@@ -1,13 +1,17 @@
-cmake_minimum_required( VERSION 3.13 )
+cmake_minimum_required( VERSION 3.27 )
 
 message( STATUS "Programming Course Reports" )
+project(programming_course_reports)
 
-include(${CMAKE_SOURCE_DIR}/cmake/Configure.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/configure.cmake)
 
 ############################### LATEX ###############################
 option(USE_LATEX OFF)
 if( USE_LATEX )
-    include( 3rdparty/UseLATEX/UseLATEX.cmake )
+    find_package(LATEX REQUIRED)
+    if(NOT (LATEX_FOUND AND LATEX_PDFLATEX_FOUND))
+        set(USE_LATEX OFF)
+    endif()
 endif( USE_LATEX )
 
 add_subdirectory(modules)
