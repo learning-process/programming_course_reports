@@ -1,4 +1,4 @@
-message(STATUS "Test task")
+message(STATUS "Sequential tasks")
 
 SUBDIRLIST(subdirs ${CMAKE_CURRENT_SOURCE_DIR})
 
