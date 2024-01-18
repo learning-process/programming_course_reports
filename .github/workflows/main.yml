@@ -33,11 +33,7 @@ jobs:
         submodules: true
     - name: Setup environment
       run: |
-        Invoke-WebRequest -Uri https://miktex.org/download/win/miktexsetup-x64.zip -OutFile miktex.zip
-        Expand-Archive miktex.zip .
-        mkdir miktexrepo
-        miktexsetup_standalone.exe --quiet --local-package-repository=./miktexrepo --package-set=complete download
-        miktexsetup_standalone.exe --quiet --local-package-repository=miktexrepo --package-set=complete install
+        choco install miktex.install
       shell: pwsh
     - name: Build
       run: |
