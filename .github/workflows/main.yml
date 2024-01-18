@@ -35,7 +35,7 @@ jobs:
       uses: seanmiddleditch/gha-setup-ninja@v4
     - name: Setup environment
       run: |
-        powershell -file "scripts\miktex_install.ps1"
+        choco install miktex --no-progress
     - name: Build
       run: |
         refreshenv
