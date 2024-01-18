@@ -59,6 +59,7 @@ jobs:
         brew install ninja
     - name: Build
       run: |
+        eval "$(/usr/libexec/path_helper)"
         mkdir build
         cmake -G Ninja -S . -B build -D USE_LATEX=ON
         cmake --build build
