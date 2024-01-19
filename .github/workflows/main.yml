@@ -33,7 +33,7 @@ jobs:
         submodules: true
     - name: Setup environment
       run: |
-        scripts\miktex_install.ps1
+        choco install miktex.install
       shell: pwsh
     - name: Build
       run: |
