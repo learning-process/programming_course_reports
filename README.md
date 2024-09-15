@@ -41,11 +41,14 @@ git submodule update --init --recursive
 
   * **Linux**:
   ```
-  sudo apt install texlive*
+  sudo apt install ninja-build texlive*
   ```
   * **MacOS (apple clang)**:
 
-  Unsupported operating system!
+  ```
+  brew install ninja
+  brew install --cask mactex
+  ```
 
 ## 2. Build the project with `CMake`
 Navigate to a source code folder.
