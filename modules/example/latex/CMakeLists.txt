@@ -31,9 +31,9 @@ if (USE_LATEX)
             add_custom_command(
                     TARGET ${ProjectId}_all_formats
                     POST_BUILD
-                    COMMAND mv "${CMAKE_CURRENT_SOURCE_DIR}/${report_name}.aux" "${LATEX_OUTPUT_PATH}/${report_name}.aux"
-                    COMMAND mv "${CMAKE_CURRENT_SOURCE_DIR}/${report_name}.log" "${LATEX_OUTPUT_PATH}/${report_name}.log"
-                    COMMAND mv "${CMAKE_CURRENT_SOURCE_DIR}/${report_name}.pdf" "${LATEX_OUTPUT_PATH}/${report_name}.pdf"
+                    COMMAND ${CMAKE_COMMAND} -E rename "${CMAKE_CURRENT_SOURCE_DIR}/${report_name}.aux" "${LATEX_OUTPUT_PATH}/${report_name}.aux"
+                    COMMAND ${CMAKE_COMMAND} -E rename "${CMAKE_CURRENT_SOURCE_DIR}/${report_name}.log" "${LATEX_OUTPUT_PATH}/${report_name}.log"
+                    COMMAND ${CMAKE_COMMAND} -E rename "${CMAKE_CURRENT_SOURCE_DIR}/${report_name}.pdf" "${LATEX_OUTPUT_PATH}/${report_name}.pdf"
             )
     endforeach ()
 else()
