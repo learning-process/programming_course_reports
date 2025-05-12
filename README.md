@@ -57,7 +57,7 @@ Navigate to a source code folder.
 
   ```
   mkdir build && cd build
-  cmake -D USE_LATEX=ON ..
+  cmake ..
   ```
 *Help on CMake keys:*
 - `-D USE_LATEX=ON` enable `LaTeX` reports.
