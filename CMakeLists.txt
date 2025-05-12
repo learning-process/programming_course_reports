@@ -6,7 +6,7 @@ project(programming_course_reports)
 include(${CMAKE_SOURCE_DIR}/cmake/configure.cmake)
 
 ############################### LATEX ###############################
-option(USE_LATEX OFF)
+option(USE_LATEX ON)
 if( USE_LATEX )
     find_package(LATEX REQUIRED)
     if(NOT (LATEX_FOUND AND LATEX_PDFLATEX_FOUND))
