@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: |
         mkdir build
-        cmake -G Ninja -S . -B build -D USE_LATEX=ON
+        cmake -G Ninja -S . -B build
         cmake --build build
     - uses: actions/upload-artifact@v4
       with:
@@ -45,7 +45,7 @@ jobs:
         Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
         refreshenv
         mkdir build
-        cmake -S . -B build -D USE_LATEX=ON
+        cmake -S . -B build
         cmake --build build
       shell: pwsh
     - uses: actions/upload-artifact@v4
@@ -66,7 +66,7 @@ jobs:
       run: |
         eval "$(/usr/libexec/path_helper)"
         mkdir build
-        cmake -G Ninja -S . -B build -D USE_LATEX=ON
+        cmake -G Ninja -S . -B build
         cmake --build build
     - uses: actions/upload-artifact@v4
       with:
