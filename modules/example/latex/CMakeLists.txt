@@ -25,6 +25,7 @@ if (USE_LATEX)
             DEPENDS  ${report_files})
 
     add_custom_target(${ProjectId}_all_formats ALL)
+    add_dependencies(${ProjectId}_pdf ${ProjectId}_prebuild)
     add_dependencies(${ProjectId}_all_formats ${ProjectId}_pdf)
 
     foreach (report_name ${list_report_names})
